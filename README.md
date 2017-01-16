@@ -21,4 +21,13 @@ timeouts for the async&#x2F;await era, written in TypeScript
 ## Usage
 Use TypeScript for best in class instellisense.
 
+```javascript
+import * as smartdelay from 'smartdelay'
+
+(async () => {
+    await smartdelay.delayFor('3000') // excution will halt here 3 seconds for this function scope BUT NOT BLOCK anything else
+    console.log()
+})()
+```
+
 [![npm](https://push.rocks/assets/repo-header.svg)](https://push.rocks)
