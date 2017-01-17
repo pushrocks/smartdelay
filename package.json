@@ -1,6 +1,6 @@
 {
   "name": "smartdelay",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "timeouts for the async/await era, written in TypeScript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
