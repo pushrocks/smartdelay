@@ -1,6 +1,6 @@
 import { expect, tap } from 'tapbundle'
 
-import * as smartdelay from '../dist/index'
+import * as smartdelay from '../ts/index'
 
 tap.test('.delayFor should delay async', async (tools) => {
   tools.timeout(5000)
@@ -9,6 +9,18 @@ tap.test('.delayFor should delay async', async (tools) => {
     timePassed = true
   }, 2000)
   await smartdelay.delayFor(3000).then(async () => {
+    // tslint:disable-next-line:no-unused-expression
+    expect(timePassed).to.be.true
+  })
+})
+
+tap.test('.delayForRandpm should delay async for a random time period', async (tools) => {
+  tools.timeout(5000)
+  let timePassed = false
+  setTimeout(() => {
+    timePassed = true
+  }, 3000)
+  await smartdelay.delayForRandom(3000,4900).then(async () => {
     // tslint:disable-next-line:no-unused-expression
     expect(timePassed).to.be.true
   })

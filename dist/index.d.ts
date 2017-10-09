@@ -5,6 +5,10 @@ import 'typings-global';
  * @param passOn
  */
 export declare let delayFor: <T>(timeInMillisecond: number, passOn?: T) => Promise<T>;
+/**
+ * delay for a random time
+ */
+export declare let delayForRandom: <T>(timeMinInMillisecond: number, timeMaxInMillisecond: number, passOn?: T) => Promise<T>;
 export declare class Timeout<T> {
     promise: Promise<T>;
     private _deferred;

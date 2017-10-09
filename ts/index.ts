@@ -18,6 +18,21 @@ export let delayFor = async <T>(timeInMillisecond: number, passOn?: T) => {
   return passOn
 }
 
+/**
+ * delay for a random time
+ */
+export let delayForRandom = async <T>(timeMinInMillisecond: number, timeMaxInMillisecond: number, passOn?: T) => {
+  await new Promise((resolve, reject) => {
+    setTimeout(
+      () => {
+        resolve()
+      },
+      Math.random() * (timeMaxInMillisecond - timeMinInMillisecond) + timeMinInMillisecond
+    )
+  })
+  return passOn
+}
+
 export class Timeout<T> {
   promise: Promise<T>
   private _deferred: smartq.Deferred<T>
