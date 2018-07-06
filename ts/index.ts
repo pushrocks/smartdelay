@@ -1,5 +1,5 @@
-import 'typings-global'
-import * as smartq from 'smartq'
+import 'typings-global';
+import * as smartpromise from '@pushrocks/smartpromise';
 
 /**
  * delay something, works like setTimeout
@@ -8,52 +8,50 @@ import * as smartq from 'smartq'
  */
 export let delayFor = async <T>(timeInMillisecond: number, passOn?: T) => {
   await new Promise((resolve, reject) => {
-    setTimeout(
-      () => {
-        resolve()
-      },
-      timeInMillisecond
-    )
-  })
-  return passOn
-}
+    setTimeout(() => {
+      resolve();
+    }, timeInMillisecond);
+  });
+  return passOn;
+};
 
 /**
  * delay for a random time
  */
-export let delayForRandom = async <T>(timeMinInMillisecond: number, timeMaxInMillisecond: number, passOn?: T) => {
+export let delayForRandom = async <T>(
+  timeMinInMillisecond: number,
+  timeMaxInMillisecond: number,
+  passOn?: T
+) => {
   await new Promise((resolve, reject) => {
-    setTimeout(
-      () => {
-        resolve()
-      },
-      Math.random() * (timeMaxInMillisecond - timeMinInMillisecond) + timeMinInMillisecond
-    )
-  })
-  return passOn
-}
+    setTimeout(() => {
+      resolve();
+    }, Math.random() * (timeMaxInMillisecond - timeMinInMillisecond) + timeMinInMillisecond);
+  });
+  return passOn;
+};
 
 export class Timeout<T> {
-  promise: Promise<T>
-  private _deferred: smartq.Deferred<T>
-  private _timeout: any
-  private _cancelled: boolean = false
-  constructor (timeInMillisecondArg, passOn?: T) {
-    this._deferred = smartq.defer<T>()
-    this.promise = this._deferred.promise
+  promise: Promise<T>;
+  private _deferred: smartpromise.Deferred<T>;
+  private _timeout: any;
+  private _cancelled: boolean = false;
+  constructor(timeInMillisecondArg, passOn?: T) {
+    this._deferred = smartpromise.defer<T>();
+    this.promise = this._deferred.promise;
     this._timeout = setTimeout(() => {
       if (!this._cancelled) {
-        this._deferred.resolve(passOn)
+        this._deferred.resolve(passOn);
       }
-    }, timeInMillisecondArg)
+    }, timeInMillisecondArg);
   }
 
-  makeUnrefed () {
-    this._timeout.unref()
+  makeUnrefed() {
+    this._timeout.unref();
   }
 
-  cancel () {
-    this._cancelled = true
-    this.makeUnrefed()
+  cancel() {
+    this._cancelled = true;
+    this.makeUnrefed();
   }
 }
