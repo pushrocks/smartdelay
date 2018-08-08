@@ -1,4 +1,3 @@
-import 'typings-global';
 import * as smartpromise from '@pushrocks/smartpromise';
 
 /**
