@@ -1,7 +1,7 @@
 {
   "name": "@pushrocks/smartdelay",
   "private": false,
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "timeouts for the async/await era, written in TypeScript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
