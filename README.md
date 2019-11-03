@@ -1,25 +1,20 @@
 # @pushrocks/smartdelay
+timeouts for the async/await era, written in TypeScript
 
-timeouts for the async&#x2F;await era, written in TypeScript
-
-## Availabililty
-
-[![npm](https://push.rocks/assets/repo-button-npm.svg)](https://www.npmjs.com/package/smartdelay)
-[![git](https://push.rocks/assets/repo-button-git.svg)](https://GitLab.com/pushrocks/smartdelay)
-[![git](https://push.rocks/assets/repo-button-mirror.svg)](https://github.com/pushrocks/smartdelay)
-[![docs](https://push.rocks/assets/repo-button-docs.svg)](https://pushrocks.gitlab.io/smartdelay/)
+## Availabililty and Links
+* [npmjs.org (npm package)](https://www.npmjs.com/package/@pushrocks/smartdelay)
+* [gitlab.com (source)](https://gitlab.com/pushrocks/smartdelay)
+* [github.com (source mirror)](https://github.com/pushrocks/smartdelay)
+* [docs (typedoc)](https://pushrocks.gitlab.io/smartdelay/)
 
 ## Status for master
-
-[![build status](https://GitLab.com/pushrocks/smartdelay/badges/master/build.svg)](https://GitLab.com/pushrocks/smartdelay/commits/master)
-[![coverage report](https://GitLab.com/pushrocks/smartdelay/badges/master/coverage.svg)](https://GitLab.com/pushrocks/smartdelay/commits/master)
-[![npm downloads per month](https://img.shields.io/npm/dm/smartdelay.svg)](https://www.npmjs.com/package/smartdelay)
-[![Dependency Status](https://david-dm.org/pushrocks/smartdelay.svg)](https://david-dm.org/pushrocks/smartdelay)
-[![bitHound Dependencies](https://www.bithound.io/github/pushrocks/smartdelay/badges/dependencies.svg)](https://www.bithound.io/github/pushrocks/smartdelay/master/dependencies/npm)
-[![bitHound Code](https://www.bithound.io/github/pushrocks/smartdelay/badges/code.svg)](https://www.bithound.io/github/pushrocks/smartdelay)
-[![TypeScript](https://img.shields.io/badge/TypeScript-2.x-blue.svg)](https://nodejs.org/dist/latest-v6.x/docs/api/)
-[![node](https://img.shields.io/badge/node->=%206.x.x-blue.svg)](https://nodejs.org/dist/latest-v6.x/docs/api/)
-[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![build status](https://gitlab.com/pushrocks/smartdelay/badges/master/build.svg)](https://gitlab.com/pushrocks/smartdelay/commits/master)
+[![coverage report](https://gitlab.com/pushrocks/smartdelay/badges/master/coverage.svg)](https://gitlab.com/pushrocks/smartdelay/commits/master)
+[![npm downloads per month](https://img.shields.io/npm/dm/@pushrocks/smartdelay.svg)](https://www.npmjs.com/package/@pushrocks/smartdelay)
+[![Known Vulnerabilities](https://snyk.io/test/npm/@pushrocks/smartdelay/badge.svg)](https://snyk.io/test/npm/@pushrocks/smartdelay)
+[![TypeScript](https://img.shields.io/badge/TypeScript->=%203.x-blue.svg)](https://nodejs.org/dist/latest-v10.x/docs/api/)
+[![node](https://img.shields.io/badge/node->=%2010.x.x-blue.svg)](https://nodejs.org/dist/latest-v10.x/docs/api/)
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-prettier-ff69b4.svg)](https://prettier.io/)
 
 ## Usage
 
@@ -29,9 +24,22 @@ Use TypeScript for best in class instellisense.
 import * as smartdelay from 'smartdelay';
 
 (async () => {
-  await smartdelay.delayFor('3000'); // excution will halt here 3 seconds for this function scope BUT NOT BLOCK anything else
-  console.log();
+  await smartdelay.delayFor(3000); // excution will halt here 3 seconds for this function scope BUT NOT BLOCK anything else
+  console.log('hi there');
+
+  // You can also go random
+  await smartdelay.delayForRandom(2000, 6000); // this will delay exection somewhere between 2 and 6 seconds.
+  console.log('Yay. You did not see me coming at this exact time');
 })();
 ```
 
-[![npm](https://push.rocks/assets/repo-header.svg)](https://push.rocks)
+## Contribution
+
+We are always happy for code contributions. If you are not the code contributing type that is ok. Still, maintaining Open Source repositories takes considerable time and thought. If you like the quality of what we do and our modules are useful to you we would appreciate a little monthly contribution: [Contribute monthly :)](https://lossless.link/contribute)
+
+For further information read the linked docs at the top of this readme.
+
+> MIT licensed | **&copy;** [Lossless GmbH](https://lossless.gmbh)
+| By using this npm module you agree to our [privacy policy](https://lossless.gmbH/privacy)
+
+[![repo-footer](https://lossless.gitlab.io/publicrelations/repofooter.svg)](https://maintainedby.lossless.com)

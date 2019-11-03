@@ -2,5 +2,15 @@
   "npmci": {
     "npmGlobalTools": [],
     "npmAccessLevel": "public"
+  },
+  "gitzone": {
+    "module": {
+      "githost": "gitlab.com",
+      "gitscope": "pushrocks",
+      "gitrepo": "smartdelay",
+      "shortDescription": "timeouts for the async/await era, written in TypeScript",
+      "npmPackagename": "@pushrocks/smartdelay",
+      "license": "MIT"
+    }
   }
 }

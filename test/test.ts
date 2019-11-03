@@ -14,16 +14,18 @@ tap.test('.delayFor should delay async', async tools => {
   });
 });
 
-tap.test('.delayForRandpm should delay async for a random time period', async tools => {
-  tools.timeout(5000);
-  let timePassed = false;
+tap.test('.delayForRandom should delay async for a random time period', async tools => {
+  let timePassedBefore = false;
+  let timePassedAfter = false;
   setTimeout(() => {
-    timePassed = true;
+    timePassedBefore = true;
   }, 3000);
-  await smartdelay.delayForRandom(3000, 4900).then(async () => {
-    // tslint:disable-next-line:no-unused-expression
-    expect(timePassed).to.be.true;
-  });
+  setTimeout(() => {
+    timePassedAfter = true;
+  }, 5000);
+  await smartdelay.delayForRandom(3000, 4900);
+  expect(timePassedBefore).to.be.true;
+  expect(timePassedAfter).to.be.false;
 });
 
 tap.test('.delayFor should pass on a type', async tools => {
