@@ -35,6 +35,7 @@ export class Timeout<T> {
   private _deferred: smartpromise.Deferred<T>;
   private _timeout: any;
   private _cancelled: boolean = false;
+
   constructor(timeInMillisecondArg, passOn?: T) {
     this._deferred = smartpromise.defer<T>();
     this.promise = this._deferred.promise;
@@ -45,11 +46,17 @@ export class Timeout<T> {
     }, timeInMillisecondArg);
   }
 
-  makeUnrefed() {
+  /**
+   * unreffing a timeout causes the node process to not wait for completion before exit
+   */
+  public makeUnrefed() {
     this._timeout.unref();
   }
 
-  cancel() {
+  /**
+   * cancels the timer
+   */
+  public cancel() {
     this._cancelled = true;
     this.makeUnrefed();
   }
