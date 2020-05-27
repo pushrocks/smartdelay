@@ -36,7 +36,11 @@ export class Timeout<T> {
   private _timeout: any;
   private _cancelled: boolean = false;
 
+  private timeoutInMillis: number;
+  private started: number;
+
   constructor(timeInMillisecondArg, passOn?: T) {
+    this.timeoutInMillis = timeInMillisecondArg;
     this._deferred = smartpromise.defer<T>();
     this.promise = this._deferred.promise;
     this._timeout = setTimeout(() => {
@@ -44,6 +48,7 @@ export class Timeout<T> {
         this._deferred.resolve(passOn);
       }
     }, timeInMillisecondArg);
+    this.started = Date.now();
   }
 
   /**
@@ -59,5 +64,10 @@ export class Timeout<T> {
   public cancel() {
     this._cancelled = true;
     this.makeUnrefed();
+  }
+  
+  public getTimeLeft() {
+    const result = this.started + this.timeoutInMillis - Date.now();
+    return result > 0 ? result : 0;
   }
 }
