@@ -33,7 +33,7 @@ export let delayForRandom = async <T>(
 export class Timeout<T> {
   promise: Promise<T>;
   private _deferred: smartpromise.Deferred<T>;
-  private _timeout: any;
+  private _timeout;
   private _cancelled: boolean = false;
 
   private timeoutInMillis: number;
@@ -63,7 +63,7 @@ export class Timeout<T> {
    */
   public cancel() {
     this._cancelled = true;
-    this.makeUnrefed();
+    clearTimeout(this._timeout);
   }
   
   public getTimeLeft() {
