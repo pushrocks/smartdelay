@@ -7,7 +7,7 @@
   "typings": "dist_ts/index.d.ts",
   "scripts": {
     "test": "(tstest test/)",
-    "build": "(tsbuild && tsbundle npm)"
+    "build": "(tsbuild --web && tsbundle npm)"
   },
   "repository": {
     "type": "git",
