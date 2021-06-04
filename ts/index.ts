@@ -5,7 +5,11 @@ import * as smartpromise from '@pushrocks/smartpromise';
  * @param timeInMillisecondArg
  * @param passOnArg
  */
-export let delayFor = async <T>(timeInMillisecondArg: number, passOnArg?: T, unrefedArg = false) => {
+export let delayFor = async <T>(
+  timeInMillisecondArg: number,
+  passOnArg?: T,
+  unrefedArg = false
+) => {
   const timeout = new Timeout(timeInMillisecondArg, null, unrefedArg);
   await timeout.promise;
   return passOnArg;
@@ -20,7 +24,11 @@ export let delayForRandom = async <T>(
   passOnArg?: T,
   unrefedArg = false
 ) => {
-  await delayFor(Math.random() * (timeMaxInMillisecondArg - timeMinInMillisecondArg) + timeMinInMillisecondArg, null, unrefedArg)
+  await delayFor(
+    Math.random() * (timeMaxInMillisecondArg - timeMinInMillisecondArg) + timeMinInMillisecondArg,
+    null,
+    unrefedArg
+  );
   return passOnArg;
 };
 
@@ -62,7 +70,7 @@ export class Timeout<T> {
     this._cancelled = true;
     clearTimeout(this._timeout);
   }
-  
+
   public getTimeLeft() {
     const result = this.started + this.timeoutInMillis - Date.now();
     return result > 0 ? result : 0;
