@@ -2,32 +2,26 @@ import * as smartpromise from '@pushrocks/smartpromise';
 
 /**
  * delay something, works like setTimeout
- * @param timeInMillisecond
- * @param passOn
+ * @param timeInMillisecondArg
+ * @param passOnArg
  */
-export let delayFor = async <T>(timeInMillisecond: number, passOn?: T) => {
-  await new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, timeInMillisecond);
-  });
-  return passOn;
+export let delayFor = async <T>(timeInMillisecondArg: number, passOnArg?: T, unrefedArg = false) => {
+  const timeout = new Timeout(timeInMillisecondArg, null, unrefedArg);
+  await timeout.promise;
+  return passOnArg;
 };
 
 /**
  * delay for a random time
  */
 export let delayForRandom = async <T>(
-  timeMinInMillisecond: number,
-  timeMaxInMillisecond: number,
-  passOn?: T
+  timeMinInMillisecondArg: number,
+  timeMaxInMillisecondArg: number,
+  passOnArg?: T,
+  unrefedArg = false
 ) => {
-  await new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, Math.random() * (timeMaxInMillisecond - timeMinInMillisecond) + timeMinInMillisecond);
-  });
-  return passOn;
+  await delayFor(Math.random() * (timeMaxInMillisecondArg - timeMinInMillisecondArg) + timeMinInMillisecondArg, null, unrefedArg)
+  return passOnArg;
 };
 
 export class Timeout<T> {
@@ -39,7 +33,7 @@ export class Timeout<T> {
   private timeoutInMillis: number;
   private started: number;
 
-  constructor(timeInMillisecondArg, passOn?: T) {
+  constructor(timeInMillisecondArg, passOn?: T, unrefedArg = false) {
     this.timeoutInMillis = timeInMillisecondArg;
     this._deferred = smartpromise.defer<T>();
     this.promise = this._deferred.promise;
@@ -49,6 +43,9 @@ export class Timeout<T> {
       }
     }, timeInMillisecondArg);
     this.started = Date.now();
+    if (unrefedArg) {
+      this.makeUnrefed();
+    }
   }
 
   /**
